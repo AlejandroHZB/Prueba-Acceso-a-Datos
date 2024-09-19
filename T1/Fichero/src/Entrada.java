@@ -34,10 +34,30 @@ public class Entrada {
 
         //***********EJERCICIO 3 ***********
 
+        rutaDir("C:\\Users");
 
-        File ficherosC = new File("C:\\Users");
-        System.out.println(Arrays.stream(ficherosC.list()).toList());
+    }
+    public static void rutaDir(String ruta){
+    File ficherosC = new File("C:\\Users");
+
+    if(ficherosC.isDirectory()){
+        File [] archivos = ficherosC.listFiles();
+        if(archivos!=null){
+            for(File archivo:archivos){
+                if(archivo.isFile()){
+                    System.out.println("Archivo : " + archivo.getName());
+                } else if (archivo.isDirectory()) {
+                    System.out.println("Directorio : " + archivo.getName());
+                    rutaDir(archivo.getAbsolutePath());
+
+                }
+            }
+        }
+
+
+
     }
 
 
+    }
 }
