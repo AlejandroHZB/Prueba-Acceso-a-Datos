@@ -1,9 +1,20 @@
+import controller.GestorFicheros;
+import controller.GestorFicherosEscritura;
+import controller.GestorFicherosLectura;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
 
 public class Entrada {
     public static void main(String[] args) {
+
+       //GestorFicheros gestorFicheros = new GestorFicheros();
+       //gestorFicheros.lecturaTextoPlano("src/resources/ficheros/Prueba_fichero.txt");
+       //GestorFicherosLectura gestorFicherosLectura = new GestorFicherosLectura();
+       //gestorFicherosLectura.gestorFicherosLectura("src/resources/ficheros/escritura.txt");
+        GestorFicherosLectura gestorFicherosLectura = new GestorFicherosLectura();
+        gestorFicherosLectura.gestorFicherosLectura("src/resources/ficheros/escritura.txt");
 
         //***********PRUEBA EN EL MAIN***********
 
@@ -22,7 +33,7 @@ public class Entrada {
 
         //***********EJERCICIO 1 ***********
 
-        File ficherosDir = new File("src/resources/directorio");
+       /* File ficherosDir = new File("src/resources/directorio");
 
         System.out.println(Arrays.stream(ficherosDir.list()).toList());
 
@@ -36,8 +47,8 @@ public class Entrada {
 
         rutaDir("C:\\Users");
 
-    }
-    public static void rutaDir(String ruta){
+    }*/
+   /* public static void rutaDir(String ruta){
     File ficherosC = new File("C:\\Users");
 
     if(ficherosC.isDirectory()){
@@ -52,7 +63,7 @@ public class Entrada {
 
                 }
             }
-        }
+        }*/
 
 
 
@@ -60,4 +71,4 @@ public class Entrada {
 
 
     }
-}
+

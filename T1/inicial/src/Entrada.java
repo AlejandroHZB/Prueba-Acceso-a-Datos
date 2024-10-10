@@ -1,5 +1,16 @@
+import java.io.IOException;
+
 public class Entrada {
     public static void main(String[] args) {
-        System.out.println("Prueba con gitHub");
+
+       ProcessBuilder proceso = new ProcessBuilder("C");
+        try{
+            proceso.start();
+            System.out.println("Proceso lanzado");
+        }
+        catch (IOException e){
+            System.out.println(e.getMessage());
+
+        }
     }
 }
