@@ -147,7 +147,7 @@ public class MenuJson {
                     String title = product.getString("title");
                     String description = product.getString("description");
                     String exportarProducto = String.format("El producto %s tiene como precio %.2f y una descripcion de %s" ,title, price, description);
-                    printWriter.println(exportarProductor);
+
 
                 }
 
