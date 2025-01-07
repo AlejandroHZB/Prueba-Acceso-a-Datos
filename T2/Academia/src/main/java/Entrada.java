@@ -2,10 +2,9 @@ import com.mongodb.ConnectionString;
 import com.mongodb.MongoClientSettings;
 import com.mongodb.ServerApi;
 import com.mongodb.ServerApiVersion;
-import com.mongodb.client.MongoClient;
-import com.mongodb.client.MongoClients;
-import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.*;
+import com.mongodb.client.result.DeleteResult;
+import com.mongodb.client.result.UpdateResult;
 import org.bson.Document;
 
 import java.awt.*;
@@ -15,6 +14,13 @@ import java.util.List;
 
 public class Entrada {
     public static void main(String[] args) {
+
+        //database
+            //collection
+                //create -> insertOne / many
+                 //Update -> update
+                 //delete -> delete
+                 //select -> find
 
         //Connection
 
@@ -31,6 +37,8 @@ public class Entrada {
         MongoDatabase database = mongoClient.getDatabase("academia");
         MongoCollection collection = database.getCollection("usuarios");
 
+        //INSERT
+
        // Document documentInsecion = new org.bson.Document();
        // documentInsecion.append("Nombre", "Borja");
        // documentInsecion.append("Apellido", "Perez");
@@ -45,15 +53,37 @@ public class Entrada {
 
         collection.insertMany(lisaInsercion);
 
+        //FIND
+        /*
+        Document filtroEdad = new Document().append("edad",new Document().append("$gt",45).append("$lt",60));
+        FindIterable resultado = collection.find(filtroEdad);
+        MongoCursor<Document> cursor = resultado.iterator();
+
+        while(cursor.hasNext()){
+            Document document = cursor.next();
+            String nombre = document.getString("nombre");
+            String apellido = document.getString("apellido");
+            int edad = document.getInteger("edad");
+            System.out.println(nombre + " " + apellido + " " + edad );
+        }*/
+
+        //UPDATE
+
+        Document docOriginal = new Document().append("nombre","Borja").append("edad",new Document().append("$lte",40));
+        Document docUpdate = new Document().append("$set",new Document("edad",50));
+        UpdateResult result =  collection.updateMany(docOriginal,docUpdate);
+        System.out.printf("El resultado de la actualizacion ha afectado a %d registros",result.getModifiedCount());
+
+        //DELETE
+        Document delDoc = new Document().append("edad",new Document().append("lt",70));
+       // collection.deleteOne(delDoc);
+
+        //
+
+        DeleteResult deleteResult = collection.deleteMany(delDoc);
+        System.out.println("El resultado del borrado es de : " + deleteResult.getDeletedCount());
 
 
-
-        //database
-        //collection
-            //create -> insertOne / many
-            //Update -> update
-            //delete -> delete
-            //select -> find
 
     }
 }
