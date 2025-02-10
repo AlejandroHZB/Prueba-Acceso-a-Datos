@@ -7,10 +7,12 @@
         <property name="connection.username">root</property>
         <property name="password"></property>
         <property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property>
-        <mapping class="model.Trabajador"/>
-        <mapping class="model.Direccion"/>
-        <mapping class="model.Habitacion"/>
-        <mapping class="model.Cliente"/>
+        <mapping class="model.Liga"/>
+        <mapping class="model.Entrenador"/>
+        <mapping class="model.Equipo"/>
+        <mapping class="model.Jugador"/>
+        <mapping class="model.Posicion"/>
+
 
     </session-factory>
 </hibernate-configuration>

@@ -1,6 +1,10 @@
+import dao.ClienteDAO;
+import dao.HabitacionDAO;
 import dao.TrabajadorDAO;
 import database.HibernateUtil;
+import model.Cliente;
 import model.Direccion;
+import model.Habitacion;
 import model.Trabajador;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -12,7 +16,28 @@ public class Entrada {
     public static void main(String[] args) {
 
         TrabajadorDAO trabajadorDAO = new TrabajadorDAO();
-        trabajadorDAO.insertarTrabajador(new Trabajador("Laura","Lopez",new Direccion("Madrid","Madrid"),new Direccion("Barcelona","Barcelona"),654545654));
+        HabitacionDAO habitacionDAO = new HabitacionDAO();
+        ClienteDAO clienteDAO = new ClienteDAO();
+
+        Session session = new HibernateUtil().getSessionFactory().getCurrentSession();
+        session.beginTransaction();
+
+        Cliente cliente = session.get(Cliente.class,1);
+        Trabajador trabajador = session.get(Trabajador.class,7);
+        trabajador.getListaClientes().add(cliente);
+        cliente.getListaTrabajadores().add(trabajador);
+        session.persist(cliente);
+        session.persist(trabajador);
+        session.getTransaction().commit();
+        session.close();
+
+
+
+        //trabajadorDAO.insertarTrabajador(new Trabajador("Laura","Lopez",new Direccion("Madrid","Madrid"),new Direccion("Barcelona","Barcelona"),654545654));
+       /* for(int i = 10; i <21; i++){
+            habitacionDAO.crearHabitacion(new Habitacion(1,i,4));
+        }*/
+
 
 
         //Insert
