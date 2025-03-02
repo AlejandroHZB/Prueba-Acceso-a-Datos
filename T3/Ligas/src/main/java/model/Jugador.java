@@ -20,7 +20,7 @@ public class Jugador implements Serializable {
     private int id;
     @Column
     private String nombre;
-    @Column
+    @Column(name = "valor_mercado")
     private int valor;
     @Column
     private String nacionalidad;

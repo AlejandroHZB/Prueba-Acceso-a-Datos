@@ -1,49 +1,46 @@
 package dao;
 
 import database.HibernateUtil;
-import model.Liga;
+import model.Equipo;
+import model.Jugador;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.query.Query;
 
 import java.util.List;
 
-public class LigasDAO {
+public class EquipoDAO {
 
     Session session;
 
-    //OPCIONES :
-    //persist -> guarda
-    //merge -> actualiza o inserta por id
-    //list -> select por id
-    //delete -> borra por id
-
-    //namedQuery -> Query -> HQL
-
-    public void crearLiga(Liga liga){
+    public void agregarEquipo(Equipo equipo){
         session = new HibernateUtil().getSessionFactory().getCurrentSession();
         session.beginTransaction();
-        session.persist(liga);
+        session.persist(equipo);
         session.getTransaction().commit();
         session.close();
     }
 
-    public Liga getLiga(int idLiga){
+    public Equipo getEquipo(int id){
         session = new HibernateUtil().getSessionFactory().getCurrentSession();
         session.beginTransaction();
-        Liga liga = session.get(Liga.class,idLiga);
+        Equipo equipo = session.get(Equipo.class,id);
         session.getTransaction().commit();
         session.close();
-        return liga;
+        return equipo;
+    }
+    public void actualizarEquipo(Equipo equipo){
+        session = new HibernateUtil().getSessionFactory().getCurrentSession();
+        session.beginTransaction();
+        session.merge(equipo);
+        session.getTransaction().commit();
+        session.close();
     }
 
-    public List<Liga> getAllLigas(){
+    public List<Jugador> obtenerPlantilla(int id){
         session = new HibernateUtil().getSessionFactory().getCurrentSession();
         session.beginTransaction();
-        Query<Liga> query = session.createQuery("FROM Liga ", Liga.class);
-        List<Liga> ligas = query.list();
+        Equipo equipo = session.get(Equipo.class,id);
         session.getTransaction().commit();
         session.close();
-        return ligas;
+        return equipo.getJugadores();
     }
 }

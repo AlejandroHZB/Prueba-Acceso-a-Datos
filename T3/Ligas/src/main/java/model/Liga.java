@@ -29,7 +29,7 @@ public class Liga implements Serializable {
     @Column
     private Date fecha_fin;
     
-    @OneToMany(mappedBy = "liga")
+    @OneToMany(mappedBy = "liga",fetch = FetchType.EAGER)
     private List<Equipo> equipos;
 
     public Liga(String nombre) {
