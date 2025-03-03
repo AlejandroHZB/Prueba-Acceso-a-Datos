@@ -11,8 +11,6 @@ import java.time.LocalDate;
 
 @Getter
 @Setter
-@AllArgsConstructor
-@NoArgsConstructor
 
 @Entity
 @Table(name = "ligas")
@@ -33,5 +31,15 @@ public class Liga implements Serializable {
 
     public Liga(String nombre) {
         this.nombre = nombre;
+    }
+
+    public Liga() {
+    }
+
+    public Liga(int id, String nombre, LocalDate fechaInicio, String fechaFin) {
+        this.id = id;
+        this.nombre = nombre;
+        this.fechaInicio = fechaInicio;
+        this.fechaFin = fechaFin;
     }
 }

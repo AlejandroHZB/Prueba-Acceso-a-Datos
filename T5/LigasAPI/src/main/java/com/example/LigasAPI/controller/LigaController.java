@@ -26,7 +26,7 @@ public class LigaController {
     @PostMapping("add")
     public String addLiga(@RequestBody Liga liga){
         ligaService.agregarLiga(liga);
-        return "Liga agragada correctamente" + liga.getNombre();
+        return "Liga agragada correctamente";
     }
 
     @GetMapping("getAll")
